@@ -116,7 +116,7 @@ set_cloexec (int fd)
   return -1;
 #else
 # if (defined SOCK_CLOEXEC || defined HAVE_MKOSTEMP || defined HAVE_PIPE2 || \
-      defined HAVE_ACCEPT4)
+      defined HAVE_ACCEPT4) && !defined(__MACH__)
 # error "Unexpected: your system has incomplete atomic CLOEXEC support"
 # endif
   int f;

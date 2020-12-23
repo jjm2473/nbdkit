@@ -53,8 +53,8 @@ libprotocol_la_CFLAGS = $(WARNINGS_CFLAGS)
 BUILT_SOURCES = protostrings.c
 CLEANFILES += protostrings.c
 
-protostrings.c: nbd-protocol.h generate-protostrings.sh Makefile
+protostrings.c: nbd-protocol.h generate-names.sh generate-protostrings.sh Makefile
 	rm -f $@ $@-t
-	$(srcdir)/generate-protostrings.sh > $@-t
+	$(srcdir)/generate-protostrings.sh $(srcdir) > $@-t
 	mv $@-t $@
 	chmod 0444 $@

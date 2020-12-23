@@ -53,7 +53,7 @@ nbdkit_iso_plugin_la_CPPFLAGS = \
 nbdkit_iso_plugin_la_CFLAGS = $(WARNINGS_CFLAGS)
 nbdkit_iso_plugin_la_LDFLAGS = \
 	-module -avoid-version -shared $(NO_UNDEFINED_ON_WINDOWS) \
-	-Wl,--version-script=$(top_srcdir)/plugins/plugins.syms \
+	$(plugin_vscript_flags) \
 	$(NULL)
 nbdkit_iso_plugin_la_LIBADD = \
 	$(top_builddir)/common/utils/libutils.la \

@@ -189,6 +189,8 @@ if test "x$gcc_warnings" = "xyes"; then
     AC_SUBST([WARNINGS_CFLAGS])
 fi
 
+AX_CHECK_VSCRIPT
+
 dnl Check if the compiler supports -std=c90 flag.  This is only used
 dnl during a test.  OpenBSD GCC does not support this flag so we skip
 dnl that test.
@@ -1164,8 +1166,8 @@ dnl Produce output files.
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_FILES([podwrapper.pl],
                 [chmod +x,-w podwrapper.pl])
-AC_CONFIG_FILES([common/protocol/generate-protostrings.sh],
-                [chmod +x,-w common/protocol/generate-protostrings.sh])
+AC_CONFIG_FILES([common/protocol/generate-names.sh],
+                [chmod +x,-w common/protocol/generate-names.sh])
 AC_CONFIG_FILES([Makefile
                  bash/Makefile
                  common/allocators/Makefile

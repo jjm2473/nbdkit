@@ -39,6 +39,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <limits.h>
+#include <string.h>
 
 #include "get_current_dir_name.h"
 

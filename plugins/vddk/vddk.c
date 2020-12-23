@@ -296,6 +296,7 @@ load_library (bool load_error_is_fatal)
     "libvixDiskLib.so.6",
     "lib64/libvixDiskLib.so.5",
     "libvixDiskLib.so.5",
+    "libvixDiskLib.dylib",
   };
   size_t i;
   CLEANUP_FREE char *orig_error = NULL;

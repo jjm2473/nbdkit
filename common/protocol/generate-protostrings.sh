@@ -40,36 +40,19 @@ cat <<'EOF'
 
 EOF
 
-declare -A functions=(
-    [global_flag]=NBD_FLAG_FIXED_NEWSTYLE
-    [flag]=NBD_FLAG_HAS_FLAGS
-    [opt]=NBD_OPT_EXPORT_NAME
-    [rep]=NBD_REP_ACK
-    [info]=NBD_INFO_EXPORT
-    [reply]=NBD_REPLY_FLAG_DONE
-    [reply_type]=NBD_REPLY_TYPE_NONE
-    [cmd]=NBD_CMD_READ
-    [cmd_flag]=NBD_CMD_FLAG_FUA
-    [error]=NBD_SUCCESS
+declare -a functions=(
+    global_flag	NBD_FLAG_FIXED_NEWSTYLE
+    flag	NBD_FLAG_HAS_FLAGS
+    opt		NBD_OPT_EXPORT_NAME
+    rep		NBD_REP_ACK
+    info	NBD_INFO_EXPORT
+    reply	NBD_REPLY_FLAG_DONE
+    reply_type	NBD_REPLY_TYPE_NONE
+    cmd		NBD_CMD_READ
+    cmd_flag	NBD_CMD_FLAG_FUA
+    error	NBD_SUCCESS
 )
 
+
 # Generate each 'const char *name_of_nbd_<fn>'
-keys=$( printf '%s\n' ${!functions[@]} | sort )
-for fn in $keys; do
-    echo 'extern const char *'
-    echo "name_of_nbd_$fn (int fl)"
-    echo '{'
-    echo '  switch (fl) {'
-
-    # We look for the first #define <symbol> and rewrite every
-    # line up to the next blank line.
-    symbol="${functions[$fn]}"
-    @SED@ -n "/^#define $symbol/,/^$/p" nbd-protocol.h |
-        @SED@ 's/^#define \([_A-Z]*\).*/  case \1:\
-    return "\1\";/'
-
-    echo '  default: return "unknown";'
-    echo '  }'
-    echo '}'
-    echo
-done
+echo ${functions[@]} | xargs -n2 $1/generate-names.sh

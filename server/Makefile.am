@@ -111,7 +111,9 @@ if USE_LINKER_SCRIPT_FOR_SERVER
 # adds loads of fuzzer and ASAN-related symbols that are required by
 # the plugins but which our linker script tries to hide.
 if !ENABLE_LIBFUZZER
+if HAVE_VSCRIPT
 nbdkit_LDFLAGS += -Wl,--version-script=$(srcdir)/nbdkit.syms
+endif
 endif
 endif
 

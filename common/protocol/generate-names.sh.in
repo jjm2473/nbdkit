@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+echo 'extern const char *'
+echo "name_of_nbd_$1 (int fl)"
+echo '{'
+echo '  switch (fl) {'
+
+# We look for the first #define <symbol> and rewrite every
+# line up to the next blank line.
+symbol="$2"
+@SED@ -n "/^#define $symbol/,/^$/p" nbd-protocol.h |
+    @SED@ 's/^#define \([_A-Z]*\).*/  case \1:\
+return "\1\";/'
+
+echo '  default: return "unknown";'
+echo '  }'
+echo '}'
+echo

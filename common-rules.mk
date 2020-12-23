@@ -35,4 +35,12 @@ NULL =
 plugindir = $(libdir)/nbdkit/plugins
 filterdir = $(libdir)/nbdkit/filters
 
+if HAVE_VSCRIPT
+plugin_vscript_flags = -Wl,--version-script=$(top_srcdir)/plugins/plugins.syms
+filter_vscript_flags = -Wl,--version-script=$(top_srcdir)/filters/filters.syms
+else
+plugin_vscript_flags =
+filter_vscript_flags =
+endif
+
 CLEANFILES = *~ *.cmi *.cmx *.cmxa *.so *.dll

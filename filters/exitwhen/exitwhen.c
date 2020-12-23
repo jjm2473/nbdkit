@@ -43,6 +43,7 @@
 #include <assert.h>
 #include <errno.h>
 #include <sys/types.h>
+#include <signal.h>
 
 #include <pthread.h>
 

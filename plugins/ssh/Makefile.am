@@ -58,7 +58,7 @@ nbdkit_ssh_plugin_la_LIBADD = \
 	$(NULL)
 nbdkit_ssh_plugin_la_LDFLAGS = \
 	-module -avoid-version -shared $(NO_UNDEFINED_ON_WINDOWS) \
-	-Wl,--version-script=$(top_srcdir)/plugins/plugins.syms \
+	$(plugin_vscript_flags) \
 	$(NULL)
 
 if HAVE_POD

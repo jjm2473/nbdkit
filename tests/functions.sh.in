@@ -107,7 +107,7 @@ requires_ipv6_loopback ()
     # This should fail with "Connection refused".  If IPv6 is broken
     # then it fails with "Address family for hostname not supported"
     # instead.  It's very unlikely that port 1 is open.
-    if LANG=C qemu-img info "nbd:[::1]:1" |& \
+    if LANG=C qemu-img info "nbd:[::1]:1" | \
        grep -sq "Address family for hostname not supported"; then
         echo "$0: IPv6 loopback is not available, skipping this test"
         exit 77

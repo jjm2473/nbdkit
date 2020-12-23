@@ -43,7 +43,7 @@ plugins/*/*.3
 /common/include/test-nextnonzero
 /common/include/test-random
 /common/include/test-tvdiff
-/common/protocol/generate-protostrings.sh
+/common/protocol/generate-names.sh
 /common/protocol/protostrings.c
 /common/replacements/libcompat.a
 /common/replacements/test-current-dir-name
